@@ -6,7 +6,7 @@ const NavBar = () => {
   const location = useLocation();
   
   const navItems = [
-    { path: "/", icon: Home, label: "Home" },
+    { path: "/hbd-sher", icon: Home, label: "Home" },
     { path: "/pomodoro", icon: Timer, label: "Pomodoro" },
     { path: "/anime-picker", icon: Sparkles, label: "Anime" },
     { path: "/library", icon: BookHeart, label: "Library" },

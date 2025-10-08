@@ -7,77 +7,77 @@ const moments = [
   {
     id: 1,
     quote: "You can't teach the small lunged to float 🌸",
-    image: "./sher_imgs/sher_1.jpg"
+    image: "./hbd-sher/sher_imgs/sher_1.jpg"
   },
   {
     id: 2,
     quote: "I think we were meant to make a heart…💖",
-    image: "./sher_imgs/sher_2.jpg"
+    image: "./hbd-sher/sher_imgs/sher_2.jpg"
   },
   {
     id: 3,
     quote: "Two heads combine to none, quick maths 🌟",
-    image: "./sher_imgs/sher_3.jpg"
+    image: "./hbd-sher/sher_imgs/sher_3.jpg"
   },
   {
     id: 4,
     quote: "Im running out of words ✨",
-    image: "./sher_imgs/sher_4.jpg"
+    image: "./hbd-sher/sher_imgs/sher_4.jpg"
   },
   {
     id: 5,
     quote: "When did i become your hair stylist 🌺",
-    image: "./sher_imgs/sher_5.jpg"
+    image: "./hbd-sher/sher_imgs/sher_5.jpg"
   },
   {
     id: 6,
     quote: "Fingers longer than the *something long* 💕",
-    image: "./sher_imgs/sher_6.jpg"
+    image: "./hbd-sher/sher_imgs/sher_6.jpg"
   },
   {
     id: 7,
     quote: "SMILE BIGGER GODDAMN IT 🌈",
-    image: "./sher_imgs/sher_7.jpg"
+    image: "./hbd-sher/sher_imgs/sher_7.jpg"
   },
   {
     id: 8,
     quote: "o kay- well not bigger than me… 😊",
-    image: "./sher_imgs/sher_8.jpg"
+    image: "./hbd-sher/sher_imgs/sher_8.jpg"
   },
   {
     id: 9,
     quote: "Come back to dc 🤗",
-    image: "./sher_imgs/sher_9.jpg"
+    image: "./hbd-sher/sher_imgs/sher_9.jpg"
   },
   {
     id: 10,
     quote: "First of many mirror pics 🎉",
-    image: "./sher_imgs/sher_10.jpg"
+    image: "./hbd-sher/sher_imgs/sher_10.jpg"
   },
   {
     id: 11,
     quote: "WE ARE SO CUTE 🔥",
-    image: "./sher_imgs/sher_11.jpg"
+    image: "./hbd-sher/sher_imgs/sher_11.jpg"
   },
   {
     id: 12,
     quote: "I still have that shirt! 💝",
-    image: "./sher_imgs/sher_12.jpg"
+    image: "./hbd-sher/sher_imgs/sher_12.jpg"
   },
   {
     id: 13,
     quote: "💪",
-    image: "./sher_imgs/sher_13.jpg"
+    image: "./hbd-sher/sher_imgs/sher_13.jpg"
   },
   {
     id: 14,
     quote: "Why do you hate me? 🦋",
-    image: "./sher_imgs/sher_14.jpg"
+    image: "./hbd-sher/sher_imgs/sher_14.jpg"
   },
   {
     id: 15,
     quote: "What a view… 🌸💖",
-    image: "./sher_imgs/sher_15.jpg"
+    image: "./hbd-sher/sher_imgs/sher_15.jpg"
   }
 ];
 

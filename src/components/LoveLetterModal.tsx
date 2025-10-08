@@ -24,15 +24,14 @@ const LoveLetterModal = ({ open, onOpenChange }: LoveLetterModalProps) => {
           </p>
           
           <p>
-            Every single day, I am grateful that the universe brought us together. You are not just my best friend—you are my person, my confidant, my partner in all things chaotic and beautiful. 💖
+Every day, I am so grateful that I dropped that pencil on the floor and that you were the person to pick it up. You’re truly the greatest friend I could have ever asked for. If I didn’t believe in soulmates before, I definitely believe in them now. 💖          </p>
+          
+          <p>
+I built this little corner of the internet just for you (it's a mess, but I’ll clean up later) because a) I’m broke and very far away, so I can’t hug you,  b) you deserve to have a website dedicated to you. Everything I built is a sort of reference to conversations or moments we share- from deciding on what anime to watch, doing pomodoro sessions together, or the infamous yaoi library that you speak of so often. 🌸
           </p>
           
           <p>
-            I built this little corner of the internet just for you because you deserve a space as special and unique as you are. A place where you can spin for your next anime adventure, focus on your work (because you're absolutely crushing it, by the way), and organize your yaoi library like the cultured individual you are. 🌸
-          </p>
-          
-          <p>
-            I love how passionate you are about the things you care about. I love how you make me laugh until my stomach hurts. I love how you're always there when I need you, no questions asked. You make life brighter, funnier, and infinitely more pink. ✨
+I love you dearly and all that you bring. I love your rants, even when they’re about nothing in particular. I love how hypotheticals, no matter how improbable they are. I love laughing at and with you, even when the joke has long since passed. You make my life better in more ways than I can describe, and I hope I do the same for you.  ✨
           </p>
           
           <p>
@@ -40,16 +39,16 @@ const LoveLetterModal = ({ open, onOpenChange }: LoveLetterModalProps) => {
           </p>
           
           <p>
-            This is your space. Use it, break it, customize it—make it yours. Just like how you've made my life infinitely better just by being in it.
+This is your space. There’s definitely more to come; my skills aren’t quite there yet. I hope you have a great time while you’re here.
           </p>
           
           <p className="text-lg font-medium">
-            Love always,<br />
+            Love you forever and always,<br />
             Mish 💕
           </p>
           
           <p className="text-sm text-muted-foreground italic text-center pt-4">
-            P.S. — You're stuck with me forever. Sorry, I don't make the rules. 😘
+            P.S. — You're stuck with me forever. I'll sue if you leave me. 😘
           </p>
         </div>
       </DialogContent>

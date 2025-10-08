@@ -1,23 +1,112 @@
-import { useState, useEffect } from "react";
-import { Plus, Trash2, Sparkles, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Plus, Trash2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getAnimeList, setAnimeList, type AnimeItem } from "@/lib/storage";
 import { toast } from "sonner";
-import { cn } from "@/lib/utils";
 
 const AnimePicker = () => {
   const [animeList, setAnimeListState] = useState<AnimeItem[]>([]);
   const [newAnime, setNewAnime] = useState("");
   const [spinning, setSpinning] = useState(false);
   const [selectedAnime, setSelectedAnime] = useState<AnimeItem | null>(null);
-  const [rotation, setRotation] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const currentAngleRef = useRef(0);
 
   useEffect(() => {
     setAnimeListState(getAnimeList());
   }, []);
+
+  useEffect(() => {
+    renderWheel();
+  }, [animeList]);
+
+  const renderWheel = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const available = availableAnime;
+    const wheelSize = canvas.width;
+    const center = wheelSize / 2;
+    const radius = center - 20;
+
+    ctx.clearRect(0, 0, wheelSize, wheelSize);
+
+    if (available.length === 0) {
+      // Draw empty wheel
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, 2 * Math.PI);
+      ctx.fillStyle = '#FFE5F1';
+      ctx.fill();
+      ctx.strokeStyle = '#FF69B4';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.fillStyle = '#FF1493';
+      ctx.font = 'bold 18px Quicksand';
+      ctx.textAlign = 'center';
+      ctx.fillText('Add anime to spin!', center, center);
+      return;
+    }
+
+    const colors = ['#FF69B4', '#FFB6D9', '#FF1493', '#FFC0CB', '#FF85C1', '#FFD5E5'];
+    const segmentAngle = (2 * Math.PI) / available.length;
+
+    // Draw segments
+    for (let i = 0; i < available.length; i++) {
+      const startAngle = i * segmentAngle + currentAngleRef.current;
+      const endAngle = (i + 1) * segmentAngle + currentAngleRef.current;
+
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.beginPath();
+      ctx.moveTo(center, center);
+      ctx.arc(center, center, radius, startAngle, endAngle);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Draw text
+      ctx.save();
+      ctx.translate(center, center);
+      ctx.rotate(startAngle + segmentAngle / 2);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#fff';
+      ctx.font = `bold ${Math.min(16, radius / 6)}px Quicksand`;
+
+      const maxTextWidth = radius * 0.65;
+      let displayText = available[i].title;
+      let textWidth = ctx.measureText(displayText).width;
+
+      while (textWidth > maxTextWidth && displayText.length > 3) {
+        displayText = displayText.substring(0, displayText.length - 1);
+        textWidth = ctx.measureText(displayText + '...').width;
+      }
+
+      if (displayText.length < available[i].title.length) {
+        displayText += '...';
+      }
+
+      ctx.fillText(displayText, radius - 15, 5);
+      ctx.restore();
+    }
+
+    // Draw center circle
+    ctx.beginPath();
+    ctx.arc(center, center, 25, 0, 2 * Math.PI);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.strokeStyle = '#FF69B4';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+  };
 
   const saveList = (list: AnimeItem[]) => {
     setAnimeList(list);
@@ -53,23 +142,35 @@ const AnimePicker = () => {
     }
 
     setSpinning(true);
-    const randomIndex = Math.floor(Math.random() * availableAnime.length);
-    const selected = availableAnime[randomIndex];
     
-    // Calculate rotation - multiple full spins + landing position
-    const spins = 5 + Math.random() * 3; // 5-8 full rotations
-    const finalAngle = (randomIndex / availableAnime.length) * 360;
-    const totalRotation = rotation + spins * 360 + finalAngle;
+    const spinDuration = 3000;
+    const startTime = performance.now();
+    const rotations = 5 + Math.random() * 3;
     
-    setRotation(totalRotation);
-
-    setTimeout(() => {
-      setSelectedAnime(selected);
-      setSpinning(false);
+    const segmentAngle = (2 * Math.PI) / availableAnime.length;
+    const winningSegment = Math.floor(Math.random() * availableAnime.length);
+    const targetAngle = currentAngleRef.current + (rotations * 2 * Math.PI) + (winningSegment * segmentAngle);
+    const initialAngle = currentAngleRef.current;
+    
+    const animateSpin = (timestamp: number) => {
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / spinDuration, 1);
       
-      // Create confetti effect
-      createConfetti();
-    }, 3000);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      currentAngleRef.current = initialAngle + (easeOut * (targetAngle - initialAngle));
+      
+      renderWheel();
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateSpin);
+      } else {
+        setSelectedAnime(availableAnime[winningSegment]);
+        setSpinning(false);
+        createConfetti();
+      }
+    };
+    
+    requestAnimationFrame(animateSpin);
   };
 
   const createConfetti = () => {
@@ -98,7 +199,7 @@ const AnimePicker = () => {
             🎡 Anime Picker Wheel
           </CardTitle>
           <CardDescription>
-            Can't decide what to watch? Let fate decide!
+            Let fate decide our future!!!
           </CardDescription>
         </CardHeader>
         
@@ -119,85 +220,42 @@ const AnimePicker = () => {
           </div>
 
           {/* Wheel Visual */}
-          {availableAnime.length > 0 ? (
-            <div className="flex flex-col items-center gap-6">
-              <div className="relative w-72 h-72 md:w-96 md:h-96">
-                {/* Pointer */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-10">
-                  <div className="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[30px] border-t-primary drop-shadow-lg" />
-                </div>
-                
-                {/* Wheel */}
-                <div 
-                  className={cn(
-                    "w-full h-full rounded-full shadow-pink border-4 border-primary overflow-hidden",
-                    spinning && "transition-transform duration-[3000ms] ease-out"
-                  )}
-                  style={{ transform: `rotate(${rotation}deg)` }}
-                >
-                  {availableAnime.map((anime, index) => {
-                    const angle = (360 / availableAnime.length) * index;
-                    const colors = [
-                      'bg-pink-400',
-                      'bg-rose-400', 
-                      'bg-fuchsia-400',
-                      'bg-pink-500',
-                      'bg-rose-500',
-                      'bg-fuchsia-500',
-                    ];
-                    
-                    return (
-                      <div
-                        key={anime.id}
-                        className={cn(
-                          "absolute w-full h-full origin-bottom left-1/2",
-                          colors[index % colors.length]
-                        )}
-                        style={{
-                          transform: `rotate(${angle}deg) translateX(-50%)`,
-                          clipPath: `polygon(50% 100%, ${50 - 50 * Math.sin((Math.PI * 2) / availableAnime.length / 2)}% 0%, ${50 + 50 * Math.sin((Math.PI * 2) / availableAnime.length / 2)}% 0%)`,
-                        }}
-                      >
-                        <div 
-                          className="absolute top-8 left-1/2 -translate-x-1/2 text-xs md:text-sm font-medium text-white text-center"
-                          style={{ transform: 'rotate(0deg)' }}
-                        >
-                          {anime.title.length > 15 
-                            ? anime.title.substring(0, 15) + '...' 
-                            : anime.title}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+          <div className="flex flex-col items-center gap-6">
+            <div className="relative w-72 h-72 md:w-96 md:h-96">
+              {/* Pointer */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-10">
+                <div className="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[30px] border-t-primary drop-shadow-lg" />
               </div>
+              
+              {/* Canvas Wheel */}
+              <canvas
+                ref={canvasRef}
+                width={384}
+                height={384}
+                className="w-full h-full rounded-full shadow-pink"
+              />
+            </div>
 
-              <Button
-                variant="pill"
-                size="lg"
-                onClick={spinWheel}
-                disabled={spinning}
-                className="text-xl px-12 py-6"
-              >
-                {spinning ? (
-                  <>
-                    <Sparkles className="h-6 w-6 animate-spin" />
-                    Spinning...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-6 w-6" />
-                    Spin the Wheel!
-                  </>
-                )}
-              </Button>
-            </div>
-          ) : (
-            <div className="text-center py-12 text-muted-foreground">
-              <p className="text-lg">Add anime in Settings → Data or connect AniList.</p>
-              <p className="text-sm mt-2">Start by adding your first anime above! ⬆️</p>
-            </div>
-          )}
+            <Button
+              variant="pill"
+              size="lg"
+              onClick={spinWheel}
+              disabled={spinning || availableAnime.length === 0}
+              className="text-xl px-12 py-6"
+            >
+              {spinning ? (
+                <>
+                  <Sparkles className="h-6 w-6 animate-spin" />
+                  Spinning...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-6 w-6" />
+                  Spin the Wheel!
+                </>
+              )}
+            </Button>
+          </div>
 
           {/* Anime List */}
           {availableAnime.length > 0 && (
@@ -235,7 +293,7 @@ const AnimePicker = () => {
             </DialogTitle>
           </DialogHeader>
           <div className="text-center space-y-4 py-6">
-            <div className="text-3xl md:text-4xl font-heading font-bold gradient-pink bg-clip-text text-transparent">
+            <div className="text-3xl font-bold leading-tight bg-gradient-to-br from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
               {selectedAnime?.title}
             </div>
             <Button variant="pill" size="lg" onClick={() => setSelectedAnime(null)}>

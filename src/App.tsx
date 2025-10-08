@@ -10,6 +10,7 @@ import AnimePicker from "./pages/AnimePicker";
 import Library from "./pages/Library";
 import Settings from "./pages/Settings";
 import About from "./pages/About";
+import Moments from "./pages/Moments";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/pomodoro" element={<Pomodoro />} />
             <Route path="/anime-picker" element={<AnimePicker />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/moments" element={<Moments />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

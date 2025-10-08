@@ -104,14 +104,14 @@ const Pomodoro = () => {
             {phaseConfig[phase].emoji} {phaseConfig[phase].label}
           </CardTitle>
           <CardDescription>
-            Cycle {completedCycles + 1} • Stay focused and productive
+            Cycle {completedCycles + 1} • Stay focused! You got this, sher!
           </CardDescription>
         </CardHeader>
         
         <CardContent className="space-y-6">
           {/* Timer Display */}
           <div className="text-center space-y-4">
-            <div className="text-7xl md:text-8xl font-heading font-bold gradient-pink bg-clip-text text-transparent">
+            <div className="text-8xl font-bold leading-tight bg-gradient-to-br from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
               {formatTime(timeLeft)}
             </div>
             

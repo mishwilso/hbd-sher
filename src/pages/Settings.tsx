@@ -62,7 +62,7 @@ const Settings = () => {
             ⚙️ Settings
           </CardTitle>
           <CardDescription>
-            Customize your experience and manage your data
+            Customize the page and give me your data!!
           </CardDescription>
         </CardHeader>
 

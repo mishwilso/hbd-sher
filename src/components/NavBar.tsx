@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Timer, Disc3, Library, Settings, Info } from "lucide-react";
+import { Home, Timer, Sparkles, BookHeart, Settings, Info, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NavBar = () => {
@@ -8,8 +8,9 @@ const NavBar = () => {
   const navItems = [
     { path: "/", icon: Home, label: "Home" },
     { path: "/pomodoro", icon: Timer, label: "Pomodoro" },
-    { path: "/anime-picker", icon: Disc3, label: "Anime" },
-    { path: "/library", icon: Library, label: "Library" },
+    { path: "/anime-picker", icon: Sparkles, label: "Anime" },
+    { path: "/library", icon: BookHeart, label: "Library" },
+    { path: "/moments", icon: Heart, label: "Moments" },
     { path: "/settings", icon: Settings, label: "Settings" },
     { path: "/about", icon: Info, label: "About" },
   ];
@@ -19,7 +20,7 @@ const NavBar = () => {
       <div className="container flex h-16 items-center px-4">
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-2xl">💖</span>
-          <span className="font-heading text-xl font-bold gradient-pink bg-clip-text text-transparent">
+          <span className="text-xl font-bold leading-tight bg-gradient-to-br from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
             Sher Board
           </span>
         </Link>

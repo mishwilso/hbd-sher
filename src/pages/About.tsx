@@ -19,9 +19,9 @@ const About = () => {
               What is this?
             </h3>
             <p className="leading-relaxed">
-              Sher Board is a custom-built web app that combines productivity tools with anime 
-              fandom fun. It's designed specifically for one very special person who deserves 
-              a space that's as unique as they are. 💖
+              Sher Board is a web app built just for you! I'll be sure to add more features
+              in the future, and keep showering you in gifts. I hope you have fun here and
+              feel free to tell me what to add next. 💖
             </p>
           </section>
 
@@ -30,11 +30,10 @@ const About = () => {
               Features
             </h3>
             <ul className="list-disc list-inside space-y-1 ml-4">
-              <li><strong>Anime Picker Wheel:</strong> Can't decide what to watch? Spin the wheel!</li>
-              <li><strong>Pomodoro Timer:</strong> Focus mode with customizable work/break intervals</li>
-              <li><strong>Yaoi Tier Library:</strong> Organize your collection from S-tier to F-tier</li>
-              <li><strong>Data Management:</strong> Import/export your data to keep it safe</li>
-              <li><strong>Personalized:</strong> A special letter just for you ✉️</li>
+              <li><strong>Anime Picker Wheel:</strong> Say goodbye to indeci..indi...in...</li>
+              <li><strong>Pomodoro Timer:</strong> Your very own pomodoro timer</li>
+              <li><strong>Yaoi Tier Library:</strong> A tier-list just for you</li>
+              <li><strong>Data Management:</strong> Import/export if you want i guess...</li>
             </ul>
           </section>
 
@@ -45,8 +44,7 @@ const About = () => {
             <p className="leading-relaxed">
               Built with React, TypeScript, Vite, and Tailwind CSS. All your data is stored 
               locally in your browser, so your lists and settings are private and accessible 
-              anytime. The design system uses a carefully crafted pink color palette because, 
-              well, obviously. 🌸
+              anytime. I'll add cloud features in the future 🌸
             </p>
           </section>
 
@@ -55,9 +53,9 @@ const About = () => {
               Accessibility
             </h3>
             <p className="leading-relaxed">
-              Sher Board respects your preferences! It includes reduced motion options for 
+              I love Accessibility and so should you! It includes reduced motion options for 
               those sensitive to animations, keyboard navigation support, and proper ARIA 
-              labels for screen readers. Everyone deserves a good experience.
+              labels for screen readers.
             </p>
           </section>
 
@@ -69,14 +67,13 @@ const About = () => {
                 by Mish
               </p>
               <p className="text-sm text-muted-foreground italic">
-                For my best friend Sher — the pink to my aesthetic, the anime to my weekends, 
-                and the reason I learned React drag-and-drop libraries. 💕
+                For my best friend Sher — I poured every ounce of web design and web knowledge I had. I hope you like it. 💕
               </p>
               
               <div className="flex items-center justify-center gap-4 pt-4">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Coffee className="h-4 w-4" />
-                  <span>Powered by caffeine and friendship</span>
+                  <span>Powered by tears and friendship</span>
                 </div>
               </div>
             </div>

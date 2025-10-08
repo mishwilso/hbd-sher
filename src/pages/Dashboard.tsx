@@ -13,28 +13,28 @@ const Dashboard = () => {
       to: "/pomodoro",
       icon: Timer,
       title: "Pomodoro Timer",
-      description: "Focus and be productive with timed work sessions",
+      description: "For all those productive nights",
       gradient: "from-pink-500 to-rose-400",
     },
     {
       to: "/anime-picker",
       icon: Disc3,
       title: "Anime Picker",
-      description: "Spin the wheel to decide what to watch next",
+      description: "Maybe now we can decided on anime faster...",
       gradient: "from-fuchsia-500 to-pink-400",
     },
     {
       to: "/library",
       icon: Library,
       title: "Yaoi Library",
-      description: "Organize your collection with tier rankings",
+      description: "Your very own tier-list!",
       gradient: "from-pink-600 to-fuchsia-500",
     },
     {
       to: "/settings",
       icon: Settings,
       title: "Settings",
-      description: "Customize your experience and manage data",
+      description: "There's not much here yet...",
       gradient: "from-rose-500 to-pink-500",
     },
   ];
@@ -44,14 +44,14 @@ const Dashboard = () => {
       <main className="container max-w-6xl px-4 py-8 md:py-12">
         {/* Hero Section */}
         <div className="text-center space-y-4 mb-12">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold">
-            <span className="gradient-pink bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold leading-tight bg-gradient-to-br from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
+            {/* <span className="gradient-pink bg-clip-text text-transparent"> */}
               Sher Board
-            </span>
+            {/* </span> */}
             <Sparkles className="inline ml-2 h-8 w-8 md:h-12 md:w-12 text-primary animate-float" />
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Pink, petty, and productive — your personal anime & work hub
+            Made with love! and tears...a lot of tears...
           </p>
         </div>
 
@@ -90,7 +90,7 @@ const Dashboard = () => {
                 <Mail className="h-6 w-6 text-primary" />
               </CardTitle>
               <CardDescription>
-                Something special from Mish
+                Something special written by me
               </CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">

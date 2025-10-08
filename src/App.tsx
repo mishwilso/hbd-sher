@@ -25,12 +25,12 @@ const App = () => (
           <NavBar />
           <Routes>
             <Route path="/hbd-sher" element={<Dashboard />} />
-            <Route path="/hbd-sher/pomodoro" element={<Pomodoro />} />
-            <Route path="/hbd-sher/anime-picker" element={<AnimePicker />} />
-            <Route path="/hbd-sher/library" element={<Library />} />
-            <Route path="/hbd-sher/moments" element={<Moments />} />
-            <Route path="/hbd-sher/settings" element={<Settings />} />
-            <Route path="/hbd-sher/about" element={<About />} />
+            <Route path="/pomodoro" element={<Pomodoro />} />
+            <Route path="/anime-picker" element={<AnimePicker />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/moments" element={<Moments />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
